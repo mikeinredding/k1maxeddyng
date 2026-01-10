@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -x
 function screws_tilt_adjust_message(){
   top_line
   title 'Screws Tilt Adjust Support' "${yellow}"

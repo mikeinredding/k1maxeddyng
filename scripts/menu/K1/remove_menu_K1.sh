@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -x
 
 function remove_menu_ui_k1() {
   top_line
