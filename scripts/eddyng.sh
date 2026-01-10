@@ -56,7 +56,7 @@ function install_eddyng(){
         if grep -q "include Eddy-Helper/eddyng/eddyng.cfg" "$PRINTER_CFG" ; then
           echo -e "Info: EddyNG configurations are already enabled in printer.cfg file..."
         else
-        	echo -e "Info: Adding Eddy configurations in printer.cfg file..."
+        	echo -e "Info: Adding EddyNG configurations in printer.cfg file..."
         	sed -i '/\[include printer_params\.cfg\]/a \[include Eddy-Helper/eddyng/eddyng\.cfg\]' "$PRINTER_CFG"
 	  		sed -i '/\[include printer_params\.cfg\]/a \[include Eddy-Helper/eddyng/fan_control\.cfg\]' "$PRINTER_CFG"
 			sed -i '/\[mcu leveling_mcu\]/,/restart_method: command/s/^/#/' "$PRINTER_CFG"
@@ -65,7 +65,7 @@ function install_eddyng(){
 			sed -i '/position_endstop: 0/s/^/#/' "$PRINTER_CFG"
 			sed -i '/\[mcu leveling_mcu\]/,/restart_method: command/s/^/#/' "$PRINTER_CFG"
 	  		sed -i '/\[prtouch_v2\]/,/\[display_status\]/{ /\[display_status\]/!s/^/#/ }' "$PRINTER_CFG"
-			sed -i "s|^serial: /dev/serial/by-id/usb-Klipper_rp2040_.*|serial: $EDDY_MCU|" "$EDDYNG_FOLDER/eddyng.cfg"
+			sed -i "s|^serial: /dev/serial/by-id/usb-Klipper_rp2040_.*|serial: $EDDYNG_MCU|" "$EDDYNG_FOLDER/eddyng.cfg"
 	  		#sed -i '/\[prtouch_v2\]/,/\[verify_heater extruder\]/{ /\[verify_heater extruder\]/!s/^/#/ }' "$PRINTER_CFG"
 	  		sed -i 's/\bG28\b/G0028/g' "$PRINTER_DATA_FOLDER/config/sensorless.cfg"
 	  		sed -i '/^\[mcu\]/i [force_move]\
@@ -76,15 +76,26 @@ function install_eddyng(){
 [gcode_macro G28]
 rename_existing: G0028
 gcode:
- 	{% set POSITION_X = printer.configfile.settings['stepper_x'].position_max/2 %}
- 	{% set POSITION_Y = printer.configfile.settings['stepper_y'].position_max/2 %}
- 	G0028 {rawparams}
- 	G90 ; Set to Absolute Positioning
- 	G0 X{POSITION_X} Y{POSITION_Y} F3000 ; Move to bed center
- 	{% if not rawparams or (rawparams and 'Z' in rawparams) %} #added when combineing eddy configfiles
-    	 PROBE #added when combineing eddy configfiles
-     	SET_Z_FROM_PROBE #added when combineing eddy configfiles
- 	{% endif %} #added when combineing eddy configfiles
+    SET_KINEMATIC_POSITION Z=0
+    G91
+    G0 Z5 F600
+    G90
+    {% set center_x = printer.configfile.settings['stepper_x'].position_max / 2 %}
+    {% set center_y = printer.configfile.settings['stepper_y'].position_max / 2 %}
+    {% set home_all = 'X' not in rawparams and 'Y' not in rawparams and 'Z' not in rawparams %}
+    {% if home_all or 'X' in rawparams or 'Y' in rawparams %}
+        G0028 X Y
+    {% endif %}
+    {% if home_all or 'Z' in rawparams %}
+        G90                                 
+        G0 X{center_x} Y{center_y} F6000     
+        G0028 Z                             
+        G0 Z2 F1000                        
+        G4 S1                              
+        M400                                
+        PROBE_EDDY_NG_PROBE_STATIC HOME_Z=1 
+        G0 Z5 F1000                         
+    {% endif %}
 
 [gcode_macro _IF_HOME_Z]
 EOF

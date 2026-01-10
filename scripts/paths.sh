@@ -73,10 +73,12 @@ function set_paths() {
   EDDYNG_BED_MESH_PATH="${KLIPPER_EXTRAS_FOLDER}/bed_mesh.py"
   EDDYNG_CONFIG="${EDDY_FOLDER}/config"
   EDDYNG_KLIPPY="${EHS_FILES}/eddyng/klippy"
+  EDDYNG_KLIPPY_EXTRAS="${EHS_FILES}/eddyng/klippy/extras"
   EDDYNG_K1_URL="${EHS_CONFIGS}/btteddyngk1.cfg"
   EDDYNG_K1M_URL="${EHS_CONFIGS}/btteddyngk1max.cfg"
   EDDYNG_MCU=$(ls /dev/serial/by-id/* | grep "Klipper_rp204")
   EDDYNG_KLIPPER_FOLDER="/usr/share/klipper"
+  EDDYNG_FILES="${EHS_FILES}/eddyng"
 
  # Cleanup #
   CLEANUP_FILE="${EHS_CONFIGS}/cleanup.cfg"
