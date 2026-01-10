@@ -69,14 +69,14 @@ function set_paths() {
   KLIPPER_SHELL_URL="${HS_FILES}/gcode-shell-command/gcode_shell_command.py"
   
   # EddyNG #
-  EDDYNG_FOLDER="${EHS_FILES}/eddyng"
+  EDDYNG_FOLDER="${EHS_PRINTER_DATA_FOLDER}/eddyng"
   EDDYNG_BED_MESH_PATH="${KLIPPER_EXTRAS_FOLDER}/bed_mesh.py"
   EDDYNG_CONFIG="${EDDY_FOLDER}/config"
   EDDYNG_KLIPPY="${EHS_FILES}/eddyng/klippy"
   EDDYNG_K1_URL="${EHS_CONFIGS}/btteddyngk1.cfg"
   EDDYNG_K1M_URL="${EHS_CONFIGS}/btteddyngk1max.cfg"
   EDDYNG_MCU=$(ls /dev/serial/by-id/* | grep "Klipper_rp204")
-  EDDY_KLIPPER_FOLDER="/usr/share/klipper"
+  EDDYNG_KLIPPER_FOLDER="/usr/share/klipper"
 
  # Cleanup #
   CLEANUP_FILE="${EHS_CONFIGS}/cleanup.cfg"
