@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -x
 
 get_model=$( /usr/bin/get_sn_mac.sh model 2>&1 )
 if echo "$get_model" | grep -iq "K1"; then 

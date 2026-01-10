@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -x
 
 function top_line() {
   echo -e "${white}"

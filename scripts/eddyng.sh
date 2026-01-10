@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e
+set -x
 
 function eddyng_message(){
   top_line
@@ -54,7 +54,7 @@ function install_eddyng(){
        		fi
         
         if grep -q "include Eddy-Helper/eddyng/eddyng.cfg" "$PRINTER_CFG" ; then
-          echo -e "Info: Eddy configurations are already enabled in printer.cfg file..."
+          echo -e "Info: EddyNG configurations are already enabled in printer.cfg file..."
         else
         	echo -e "Info: Adding Eddy configurations in printer.cfg file..."
         	sed -i '/\[include printer_params\.cfg\]/a \[include Eddy-Helper/eddyng/eddyng\.cfg\]' "$PRINTER_CFG"
