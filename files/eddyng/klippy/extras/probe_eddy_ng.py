@@ -303,7 +303,10 @@ class ProbeEddyParams:
         self.tap_adjust_z = config.getfloat("tap_adjust_z", self.tap_adjust_z)
         self.calibration_points = config.getint("calibration_points", self.calibration_points)
 
-        self.tap_mode = config.getchoice("tap_mode", mode_choices, self.tap_mode)
+        # self.tap_mode = config.getchoice("tap_mode", mode_choices, self.tap_mode)
+        # self.tap_mode = 'butter'
+        self.tap_mode = config.get("tap_mode", "butter")
+
         default_tap_threshold = 1000.0  # for wma
         if self.tap_mode == "butter":
             default_tap_threshold = 250.0
@@ -440,8 +443,8 @@ class ProbeEddy:
             "mellow_fly": ldc1612_ng.LDC1612_ng,
             "ldc1612_internal_clk": ldc1612_ng.LDC1612_ng,
         }
-        sensor_type = config.getchoice("sensor_type", {s: s for s in sensors})
-
+        # sensor_type = config.getchoice("sensor_type", {s: s for s in sensors})
+        sensor_type = config.get("sensor_type", "ldc1612")
         self._sensor_type = sensor_type
         self._sensor = sensors[sensor_type](config)
         self._mcu = self._sensor.get_mcu()
@@ -2319,8 +2322,8 @@ class ProbeEddyEndstopWrapper:
 
         self._multi_probe_in_progress = False
 
-        self._dispatch = mcu.TriggerDispatch(self._mcu)
-
+        # self._dispatch = mcu.TriggerDispatch(self._mcu)
+        self._dispatch = None
         # the times of the last successful endstop home_wait
         self.last_trigger_time = 0.0
         self.last_tap_start_time = 0.0
