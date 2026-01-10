@@ -118,20 +118,3 @@ sed -i -e '\|\[gcode_macro LOAD_MATERIAL_CLOSE_FAN2]|!b' -e "r $TEMP_FILE" -e 'd
     esac
   done
 }
-
-
-[gcode_macro G28]
-rename_existing: G0028
-gcode:
-    {% set POSITION_X = printer.configfile.settings['stepper_x'].position_max/2 %}
-    {% set POSITION_Y = printer.configfile.settings['stepper_y'].position_max/2 %}
-    G0028 {rawparams}
-    {% if not rawparams or (rawparams and 'Z' in rawparams) %}
-        G90
-        G0 X{POSITION_X} Y{POSITION_Y} F3000
-        G0 Z2 F1000
-        G4 S1
-        M400        
-        PROBE_EDDY_NG_PROBE_STATIC HOME_Z=1 
-        G0 Z5 F1000
-    {% endif %}
