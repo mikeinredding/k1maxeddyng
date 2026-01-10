@@ -27,7 +27,7 @@ function install_menu_k1() {
         if [ -d "EDDY_FOLDER" ]; then  
           error_msg "EddyDuo already installed!"
         else
-          run "install_eddyduo" "install_menu_ui_k1"
+          run "install_eddyng" "install_menu_ui_k1"
         fi;;
       2)
 	if [ -f "$SCREWS_ADJUST_FILE" ]; then
