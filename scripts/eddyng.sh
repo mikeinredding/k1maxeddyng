@@ -4,10 +4,10 @@ set -e
 
 function eddyng_message(){
   top_line
-  title 'EddyDUo' "${yellow}"
+  title 'EddyNG' "${yellow}"
   inner_line
   hr
-  echo -e " │ ${cyan}Installs vvuk/eddy-ng functionality                            ${white}│"
+  echo -e " │ ${cyan}Installs vvuk/eddy-ng functionality via Vsevolod-Volkov K1-Klipper-Eddy ${white}│"
   echo -e " │ ${cyan}using (Guilouz) Creality Helper Script as a framework          ${white}│"
   hr
   bottom_line
