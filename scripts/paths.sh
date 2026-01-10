@@ -68,15 +68,6 @@ function set_paths() {
   KLIPPER_SHELL_FILE="${KLIPPER_EXTRAS_FOLDER}/gcode_shell_command.py"
   KLIPPER_SHELL_URL="${HS_FILES}/gcode-shell-command/gcode_shell_command.py"
   
-  # Eddy #
-  EDDY_FOLDER="${EHS_PRINTER_DATA_FOLDER}/eddy"
-  EDDY_CONFIG="${EDDY_FOLDER}/config"
-  EDDY_KLIPPY="${EHS_FILES}/eddy/klippy"
-  EDDY_K1_URL="${EHS_CONFIGS}/btteddyk1.cfg"
-  EDDY_K1M_URL="${EHS_CONFIGS}/btteddyk1max.cfg"
-  EDDY_MCU=$(ls /dev/serial/by-id/* | grep "Klipper_rp204")
-  EDDY_KLIPPER_FOLDER="/usr/share/klipper"
-  
   # EddyNG #
   EDDYNG_FOLDER="${EHS_FILES}/eddyng"
   EDDYNG_BED_MESH_PATH="${KLIPPER_EXTRAS_FOLDER}/bed_mesh.py"
