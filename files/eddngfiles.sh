@@ -11,7 +11,7 @@ mkdir -p "$BACKUP_DIR"
 touch "$LOG_FILE"
 
 FILES=(
-    "clocksync.py" "inventory.csv" "mcu.py" "serialhdl.py" "stepper.py"
+    "clocksync.py" "configfile.py" "mcu.py" "serialhdl.py" "stepper.py"
     "extras/adxl345.py" "extras/axis_twist_compensation.py" "extras/bed_mesh.py"
     "extras/bulk_sensor.py" "extras/bus.py" "extras/gcode_shell_command.py"
     "extras/ldc1612.py" "extras/ldc1612_ng.py" "extras/manual_probe.py"
