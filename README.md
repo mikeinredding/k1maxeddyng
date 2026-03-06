@@ -1,3 +1,3 @@
 # k1maxeddyng
-Attempt at EddyNG support on K1Max w/CFS, key word attempt. Worked around errors related to eddyng probe just trying to get klipper to load. I got through errors related to eddyng but then ended up with Error loading kinematics 'corexy'.
+Attempt number2 at EddyNG support on K1Max stock firmware if it works hopefully it will work with the CFS firmware as well
 
